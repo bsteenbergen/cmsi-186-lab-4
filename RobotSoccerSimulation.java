@@ -51,7 +51,21 @@ public class RobotSoccerSimulation extends JPanel {
             for (var b1 : balls) {
                 for (var b2 : balls) {
                     if (b1 != b2) {
-                        Array[] mark = [dx, dy];
+                        var dx = b2.x - b1.x;
+                        var dy = b2.y - b1.y;
+
+                        var dist = Math.hypot(dx, dy);
+                        var overlap = b1.radius + b2.radius - dist;
+
+                        if (overlap > 0) {
+                            var adjustX = (overlap / 2) * (dx / dist);
+                            var adjustY = (overlap / 2) * (dy / dist);
+
+                            b1.x -= adjustX;
+                            b1.y -= adjustY;
+                            b2.x += adjustX;
+                            b2.y += adjustX;
+                        }
                     }
                 }
             }
