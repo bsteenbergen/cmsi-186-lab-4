@@ -20,9 +20,7 @@ public class RobotSoccerSimulation extends JPanel {
     private static double ENEMY_SPEED = 1.8;
     private static double FRICTION = 0.0009;
 
-    private static String input = "";
-
-    private volatile String endMessage;
+    private static volatile String endMessage;
     
     static class Ball {
         private double x;
@@ -91,10 +89,10 @@ public class RobotSoccerSimulation extends JPanel {
 
         boolean inside(Goal goal) {
             return 
-            (this.x - this.radius > x - WIDTH / 2 &&
-            this.x + this.radius < x + WIDTH / 2 &&
-            this.y - this.radius > y - HEIGHT / 2 &&
-            this.y + this.radius < y + HEIGHT / 2);
+            (this.x - this.radius > goal.x - WIDTH / 2 &&
+            this.x + this.radius < goal.x + WIDTH / 2 &&
+            this.y - this.radius > goal.y - HEIGHT / 2 &&
+            this.y + this.radius < goal.y + HEIGHT / 2);
         }
     }
 
@@ -149,13 +147,11 @@ public class RobotSoccerSimulation extends JPanel {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
 
-            String input = args[0];
-            RobotSoccerSimulation.input = input;
-            RobotSoccerSimulation.PLAYER_RADIUS = Double.parseDouble(args[1]);
-            RobotSoccerSimulation.ENEMY_RADIUS = Double.parseDouble(args[2]);
-            RobotSoccerSimulation.PLAYER_SPEED = Double.parseDouble(args[3]);
-            RobotSoccerSimulation.ENEMY_SPEED = Double.parseDouble(args[4]);
-            RobotSoccerSimulation.FRICTION = Double.parseDouble(args[5]);
+            RobotSoccerSimulation.PLAYER_RADIUS = Double.parseDouble(args[0]);
+            RobotSoccerSimulation.ENEMY_RADIUS = Double.parseDouble(args[1]);
+            RobotSoccerSimulation.PLAYER_SPEED = Double.parseDouble(args[2]);
+            RobotSoccerSimulation.ENEMY_SPEED = Double.parseDouble(args[3]);
+            RobotSoccerSimulation.FRICTION = Double.parseDouble(args[4]);
 
             var panel = new RobotSoccerSimulation();
             panel.setBackground(Color.GREEN.brighter());
