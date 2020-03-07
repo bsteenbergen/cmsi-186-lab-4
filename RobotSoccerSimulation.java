@@ -147,11 +147,18 @@ public class RobotSoccerSimulation extends JPanel {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
 
+            try {
             RobotSoccerSimulation.PLAYER_RADIUS = Double.parseDouble(args[0]);
             RobotSoccerSimulation.ENEMY_RADIUS = Double.parseDouble(args[1]);
             RobotSoccerSimulation.PLAYER_SPEED = Double.parseDouble(args[2]);
             RobotSoccerSimulation.ENEMY_SPEED = Double.parseDouble(args[3]);
             RobotSoccerSimulation.FRICTION = Double.parseDouble(args[4]);
+            }
+
+            catch (NumberFormatException e) {
+                System.err.println("Arguments must be numbers");
+                return;
+            }
 
             var panel = new RobotSoccerSimulation();
             panel.setBackground(Color.GREEN.brighter());
