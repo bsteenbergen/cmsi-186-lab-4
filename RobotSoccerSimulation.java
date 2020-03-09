@@ -153,10 +153,28 @@ public class RobotSoccerSimulation extends JPanel {
             RobotSoccerSimulation.PLAYER_SPEED = Double.parseDouble(args[2]);
             RobotSoccerSimulation.ENEMY_SPEED = Double.parseDouble(args[3]);
             RobotSoccerSimulation.FRICTION = Double.parseDouble(args[4]);
+
+                if (FRICTION < 0.0009) {
+                    throw new IllegalArgumentException("Friction must be at least 0.0009");
+                }
+                else if (PLAYER_RADIUS > 25 || PLAYER_RADIUS < 5) {
+                    throw new IllegalArgumentException("Radii for player out of range.");
+                }
+                else if (ENEMY_RADIUS > 50 || ENEMY_RADIUS < 5) {
+                    throw new IllegalArgumentException("Radii for enemy out of range");
+                }
+                else if (PLAYER_SPEED > 100 || ENEMY_SPEED > 100){
+                    throw new IllegalArgumentException("Ball speed must not be greater than 100.");
+                }
+             
             }
 
             catch (NumberFormatException e) {
                 System.err.println("Arguments must be numbers");
+                return;
+            }
+            catch (IllegalArgumentException e) {
+                System.err.println(e.getMessage());
                 return;
             }
 
