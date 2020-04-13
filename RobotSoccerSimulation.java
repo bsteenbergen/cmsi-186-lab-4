@@ -132,7 +132,7 @@ public class RobotSoccerSimulation extends JPanel {
         while (endMessage == null) {
             for (var i = 0; i < balls.length; i++) {
                 balls[i].applyFriction();
-                balls[i].moveToward(i ==0 ? goal.x : balls[0].x, i == 0 ? goal.y : balls[0].y);
+                balls[i].moveToward(i == 0 ? goal.x : balls[0].x, i == 0 ? goal.y : balls[0].y);
             }
             Ball.adjustIfCollisions();
             Ball.endSimulationIfNecessary();
